@@ -1,11 +1,13 @@
 import React from 'react';
-import './App.css';
 import {AllRoutes} from '../components/allRoutes/AllRoutes';
 import {Header} from '../components/header/Header';
 
+// @ts-ignore
+import s from './App.module.css'
+
 function App() {
     return (
-        <div className="App">
+        <div className={s.App}>
             <Header/>
             <AllRoutes/>
         </div>
