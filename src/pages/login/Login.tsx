@@ -4,7 +4,7 @@ import {useFormik} from 'formik';
 import {useDispatch} from 'react-redux';
 import {LoginThunk} from './loginReducer';
 import {useAppSelector} from '../../store/store';
-import {Navigate} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 
 type LoginParamsType = {
     email: string,
@@ -102,6 +102,13 @@ export const Login = () => {
                             <p>{formik.touched.password && formik.errors.password}</p>
                         </div>
                         <button type="submit">Log In</button>
+
+                        <div>
+                            <Link to={'/password-recovery'}>Forgot password</Link>
+                        </div>
+                        <div>
+                            <Link to={'/registration'}>Don't have an account?</Link>
+                        </div>
 
                     </form>
                 </div>
