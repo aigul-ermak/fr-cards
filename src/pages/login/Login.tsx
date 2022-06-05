@@ -1,6 +1,10 @@
 // @ts-ignore
 import s from './Login.module.css'
 import {useFormik} from 'formik';
+import {useDispatch} from 'react-redux';
+import {LoginThunk} from './loginReducer';
+import {useAppSelector} from '../../store/store';
+import {Navigate} from 'react-router-dom';
 
 type LoginParamsType = {
     email: string,
@@ -28,6 +32,11 @@ const validatePassAndEmail = (
 }
 
 export const Login = () => {
+
+    const isLoggedIn = useAppSelector((state) => state.login.isLoggedIn)
+
+    const dispatch = useDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -36,9 +45,19 @@ export const Login = () => {
         },
         validate: validatePassAndEmail,
         onSubmit: values => {
+            dispatch(LoginThunk({
+                email: 'nya-admin@nya.nya',
+                password: '1qazxcvBG',
+                rememberMe: false
+            }))
             console.log(values)
         }
     })
+
+    if (isLoggedIn) {
+        return <Navigate to={'/profile'}/>
+    }
+
     return (
         <div className={s.container}>
             <div>
